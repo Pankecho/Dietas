@@ -26,7 +26,7 @@ public class Database {
     private final String password = "achisLosMariachis";
     private final String schema = "dietitas";
     
-    private static Database instance = new Database();
+    private volatile static Database instance = new Database();
     
     private Connection conexion = null;
 
@@ -46,6 +46,13 @@ public class Database {
     }
     
     public static Database getInstance(){
+        if(instance == null){
+            synchronized (Database.class){
+                if(instance == null){
+                    instance = new Database();
+                }
+            }
+        }
         return instance;
     }
     
