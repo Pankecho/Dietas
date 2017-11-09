@@ -105,11 +105,11 @@ public class Database {
             Statement stament = this.conexion.createStatement();
             ResultSet rs = stament.executeQuery(SQL);
             while(rs.next()){
-                lista.add(new Alimento(Integer.parseInt(rs.getString("id")),
-                                        rs.getString("nombre"), 
-                                        rs.getString("tipo"), 
-                                        Integer.parseInt(rs.getString("calorias")), 
-                                        rs.getString("descripcion")));
+                lista.add(new Alimento(Integer.parseInt(rs.getString("a.id")),
+                                        rs.getString("a.nombre"), 
+                                        rs.getString("a.tipo"), 
+                                        Integer.parseInt(rs.getString("a.calorias")), 
+                                        rs.getString("a.descripcion")));
             }
             closeDatabase();
         } catch (SQLException ex) {
@@ -128,11 +128,11 @@ public class Database {
             Statement stament = this.conexion.createStatement();
             ResultSet rs = stament.executeQuery(SQL);
             while(rs.next()){
-                lista.add(new Ejercicio(Integer.parseInt(rs.getString("id")), 
-                                        rs.getString("nombre"),
-                                        rs.getString("descripcion"), 
-                                        rs.getString("imagen"), 
-                                        Integer.parseInt(rs.getString("calorias_minuto"))));
+                lista.add(new Ejercicio(Integer.parseInt(rs.getString("e.id")), 
+                                        rs.getString("e.nombre"),
+                                        rs.getString("e.descripcion"), 
+                                        rs.getString("e.imagen"), 
+                                        Integer.parseInt(rs.getString("e.calorias_minuto"))));
             }
             closeDatabase();
         } catch (SQLException ex) {
