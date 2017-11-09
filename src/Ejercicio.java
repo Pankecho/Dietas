@@ -11,15 +11,14 @@
 public class Ejercicio {
     
     private String nombre, imagen, descripcion;
-    private int calorias,tiempo,id;
+    private int calorias,id;
 
-    public Ejercicio(int id,String n, String d, String i, int c, int t) {
+    public Ejercicio(int id,String n, String d, String i, int c) {
         this.id = id;
         this.nombre = n;
         this.descripcion = d;
         this.imagen = i;
         this.calorias = c;
-        this.tiempo = t;
     }
 
     public String getDescripcion() {
@@ -56,18 +55,5 @@ public class Ejercicio {
 
     public void setCalorias(int calorias) {
         this.calorias = calorias;
-    }
-
-    public int getTiempo() {
-        return tiempo;
-    }
-
-    public void setTiempo(int tiempo) {
-        this.tiempo = tiempo;
-    }
-    
-    
-    
-    
-    
+    }    
 }

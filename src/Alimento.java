@@ -10,15 +10,14 @@
  */
 public class Alimento {
     private String nombre, tipoAlimento, descripcion;
-    private int calorias,porcion, id;
+    private int calorias, id;
     
-    public Alimento(int id, String n, String tA, int c, int p, String d){
+    public Alimento(int id, String n, String tA, int c, String d){
         this.id = id;
         this.nombre = n;
         this.tipoAlimento = tA;
         this.descripcion = d;
         this.calorias = c;
-        this.porcion = p;
     }
 
     public String getDescripcion() {
@@ -60,14 +59,4 @@ public class Alimento {
     public void setCalorias(int calorias) {
         this.calorias = calorias;
     }
-
-    public int getPorcion() {
-        return porcion;
-    }
-
-    public void setPorcion(int porcion) {
-        this.porcion = porcion;
-    }
-    
-    
 }

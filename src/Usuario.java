@@ -13,14 +13,15 @@ import java.util.ArrayList;
  */
 public class Usuario implements Sujeto{
     private ArrayList observers;
-    private String nombre;
-    private int edad, peso;
+    private String nombre,usuario;
+    private int edad, id;
     private char sexo;
-    private float altura;
+    private float altura,peso;
     private String tipoVida;
     private String password;
 
-    public Usuario(String n, int e, int p, char s, float a, String t,String pp) {
+    public Usuario(int id, String n, int e, float p, char s, float a, String t,String pp, String u) {
+        this.id = id;
         this.nombre = n;
         this.edad = e;
         this.peso = p;
@@ -28,6 +29,7 @@ public class Usuario implements Sujeto{
         this.altura = a;
         this.tipoVida = t;
         this.password = pp;
+        this.usuario = u;
         this.observers = new ArrayList();
     }
 
@@ -48,6 +50,12 @@ public class Usuario implements Sujeto{
         
     }
 
+    public int getId() {
+        return id;
+    }
+    
+    
+
     public String getNombre() {
         return nombre;
     }
@@ -64,11 +72,11 @@ public class Usuario implements Sujeto{
         this.edad = edad;
     }
 
-    public int getPeso() {
+    public float getPeso() {
         return peso;
     }
 
-    public void setPeso(int peso) {
+    public void setPeso(float peso) {
         this.peso = peso;
     }
 
