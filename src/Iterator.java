@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
+<<<<<<< HEAD
  * @author pankecho
  */
 public abstract class Iterator {
@@ -16,4 +17,18 @@ public abstract class Iterator {
     
     public abstract boolean hasNext();
     public abstract Component next();
+=======
+ * @author Eduardo
+ */
+public abstract class Iterator {
+    	ArrayList<Alimento> alimento;
+	ArrayList<Ejercicio> ejercicio;
+        int indice = -1;
+	
+	public abstract Object next();
+	
+	public boolean hasNext() {
+            return false;
+	}
+>>>>>>> fce0d9e7a812c73c644e9ea4148e96f86bc6af8d
 }
