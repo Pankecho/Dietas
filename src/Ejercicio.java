@@ -8,17 +8,31 @@
  *
  * @author pankecho
  */
-public class Ejercicio {
+public class Ejercicio implements Component{
     
-    private String nombre, imagen, descripcion;
+    private String nombre, imagen, descripcion,tipo;
     private int calorias,id;
 
-    public Ejercicio(int id,String n, String d, String i, int c) {
+    public Ejercicio() {
+        this.nombre = "";
+        this.imagen = "";
+        this.descripcion = "";
+        this.tipo = "";
+        this.calorias = 0;
+        this.id = 0;
+    }
+    
+    public Ejercicio(int id,String n, String d, String i, int c, String t) {
         this.id = id;
         this.nombre = n;
         this.descripcion = d;
         this.imagen = i;
         this.calorias = c;
+        this.tipo = t;
+    }
+
+    public String getTipo() {
+        return tipo;
     }
 
     public String getDescripcion() {
@@ -56,4 +70,24 @@ public class Ejercicio {
     public void setCalorias(int calorias) {
         this.calorias = calorias;
     }    
+
+    @Override
+    public Iterator getIterator(String i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void agregarComponente(Component c) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void eliminarComponente(Component c) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Component getComponent(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -11,5 +11,5 @@
 public interface Sujeto {
     public void agregaObservador(Observer o);
     public void eliminaObservador(Observer o);
-    public void notifyObservers();
+    public void notifyObservers(Component c);
 }

@@ -12,16 +12,35 @@ import java.util.ArrayList;
  * @author pankecho
  */
 public class Usuario implements Sujeto{
-    private ArrayList observers;
+    private ArrayList<Observer> observers;
     private String nombre,usuario;
     private int edad, id;
     private char sexo;
     private float altura,peso;
     private String tipoVida;
     private String password;
+    private Dieta dieta;
 
-    public Usuario(int id, String n, int e, float p, char s, float a, String t,String pp, String u) {
+    public Usuario() {
+        this.id = 0;
+        this.nombre = "";
+        this.edad = 0;
+        this.peso = 0;
+        this.sexo = 'M';
+        this.altura = 0;
+        this.tipoVida = "";
+        this.password = "";
+        this.usuario = "";
+        this.observers = new ArrayList<Observer>();
+        this.dieta = null;
+    }
+
+    public void setId(int id) {
         this.id = id;
+    }
+    
+    public Usuario(String n, int e, float p, char s, float a, String t,String pp, String u) {
+        this.id = 0;
         this.nombre = n;
         this.edad = e;
         this.peso = p;
@@ -31,6 +50,15 @@ public class Usuario implements Sujeto{
         this.password = pp;
         this.usuario = u;
         this.observers = new ArrayList();
+        this.dieta = null;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     @Override
@@ -46,12 +74,22 @@ public class Usuario implements Sujeto{
     }
 
     @Override
-    public void notifyObservers() {
-        
+    public void notifyObservers(Component c) {
+        for(int i = 0; i < this.observers.size(); i++){
+            observers.get(i).update(c);
+        }
     }
 
     public int getId() {
         return id;
+    }
+
+    public Dieta getDieta() {
+        return dieta;
+    }
+
+    public void setDieta(Dieta dieta) {
+        this.dieta = dieta;
     }
     
     
@@ -103,4 +141,8 @@ public class Usuario implements Sujeto{
     public void setTipoVida(String tipoVida) {
         this.tipoVida = tipoVida;
     }   
+    
+    public void comer(Alimento a){
+        notifyObservers(a);
+    }
 }

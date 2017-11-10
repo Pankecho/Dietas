@@ -8,16 +8,26 @@
  *
  * @author pankecho
  */
-public class Alimento {
-    private String nombre, tipoAlimento, descripcion;
+public class Alimento implements Component{
+    private String nombre, tipoAlimento, descripcion,tipoComida;
     private int calorias, id;
     
-    public Alimento(int id, String n, String tA, int c, String d){
+    public Alimento(){
+        this.nombre = "";
+        this.tipoAlimento = "";
+        this.descripcion = "";
+        this.calorias = 0;
+        this.id = 0;
+        this.tipoComida = "";
+    }
+    
+    public Alimento(int id, String n, String tA, int c, String d,String tc){
         this.id = id;
         this.nombre = n;
         this.tipoAlimento = tA;
         this.descripcion = d;
         this.calorias = c;
+        this.tipoComida = tc;
     }
 
     public String getDescripcion() {
@@ -28,8 +38,6 @@ public class Alimento {
         this.descripcion = descripcion;
     }
     
-    
-
     public int getId() {
         return id;
     }
@@ -45,7 +53,7 @@ public class Alimento {
     }
 
     public String getTipoAlimento() {
-        return tipoAlimento;
+        return tipoComida;
     }
 
     public void setTipoAlimento(String tipoAlimento) {
@@ -58,5 +66,30 @@ public class Alimento {
 
     public void setCalorias(int calorias) {
         this.calorias = calorias;
+    }
+
+    @Override
+    public Iterator getIterator(String i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void agregarComponente(Component c) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void eliminarComponente(Component c) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Component getComponent(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getTipo() {
+        return this.tipoAlimento;
     }
 }
