@@ -20,9 +20,9 @@ import java.util.List;
  */
 public class Database {
     
-    private final String database = "Patrones";
+    private final String database = "dieta";
     private final String usuario = "postgres";
-    private final String password = "Jpmr01495";
+    private final String password = "Frodo7751@";
     private final String schema = "dieta";
     
     private volatile static Database instance = new Database();
@@ -204,12 +204,12 @@ public class Database {
         return index;
     }
     
-    public void guardarAlimento(int id, ArrayList<Alimento> a){
-        String SQL = "INSERT INTO dieta_alimento VALUES ";
+    public void guardarAlimento(int id, ArrayList<AlimentoCompuesto> a){
+        String SQL = "INSERT INTO dieta_alimento (id_dieta,id_alimento,tipo_alimento) VALUES ";
         String values = "";
-        for(int i = 0; i < a.size(); i++){
-            values += "(" + id + "," + a.get(i).getId() + "),";
-        }
+        for(int i = 0; i < a.size(); i++){  
+            values += "(" + id + "," + a.get(i).getId() + ",'"+a.get(i).getTipoComidaAlimento()+"'),";
+        }        
         values = values.substring(0,values.length()-1);
         SQL+=values;
         if(this.conexion == null){

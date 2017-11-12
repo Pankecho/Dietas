@@ -27,4 +27,10 @@ public class AlimentoSimple extends Alimento{
         this.tipoComida = tc;
     }
     
+    @Override
+    public String toString(){
+        String cadena = "";
+        cadena += id + " - " + nombre + " - ";
+        return cadena;
+    }
 }

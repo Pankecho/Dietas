@@ -26,19 +26,23 @@ public class Main {
         u.setDieta(d);
         
         ArrayList<Component> aa = u.getDieta().getComponentes();
-        ArrayList<Alimento> ali = new ArrayList<Alimento>();
+        ArrayList<AlimentoCompuesto> ali = new ArrayList<AlimentoCompuesto>();
         
         for(int i = 0; i < aa.size(); i++){
             switch(aa.get(i).getClass().getName()){
                 case "Ejercicio":
                     System.out.println(((Ejercicio)aa.get(i)).getNombre());
                     break;
-                case "Alimento":
-                    System.out.println(((Alimento)aa.get(i)).getNombre());
-                    ali.add((Alimento)aa.get(i));
+                case "AlimentoCompuesto":
+                    System.out.println(((AlimentoCompuesto)aa.get(i)).getTipoComidaAlimento());
+                    ali.add((AlimentoCompuesto)aa.get(i));
+                    break;
+                default:
+                    System.out.println(aa.get(i).getClass().getName());
                     break;
             }
         }
+        System.out.println(aa.size());
         Database.getInstance().guardarAlimento(u.getDieta().getId(), ali);
     }
 }
