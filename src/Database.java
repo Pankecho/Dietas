@@ -64,7 +64,7 @@ public class Database {
             Statement stament = this.conexion.createStatement();
             ResultSet rs = stament.executeQuery(SQL);
             while(rs.next()){
-                lista.add(new Alimento(Integer.parseInt(rs.getString("id")),
+                lista.add(new AlimentoSimple(Integer.parseInt(rs.getString("id")),
                                         rs.getString("nombre"), 
                                         rs.getString("tipo"), 
                                         Integer.parseInt(rs.getString("calorias")), 
@@ -104,7 +104,9 @@ public class Database {
     
     public List<Alimento> getAlimentosPorDieta(int id){
         List<Alimento> lista = new ArrayList<Alimento>();
-        String SQL = "SELECT a.id,a.nombre,a.calorias,a.descripcion,a.tipo,a.tipo_comida FROM alimento AS a INNER JOIN dieta_alimento AS ua ON a.id = ua.id_alimento WHERE ua.id = " + id;
+        String SQL = "SELECT a.id,a.nombre,a.calorias,a.descripcion,a.tipo,a.tipo_comida,ua.tipo_alimento "
+                + "FROM alimento AS a INNER JOIN dieta_alimento AS ua ON a.id = ua.id_alimento "
+                + "WHERE ua.id = " + id;
         if(this.conexion == null){
             this.conexion = getConnection();
         }
@@ -112,12 +114,14 @@ public class Database {
             Statement stament = this.conexion.createStatement();
             ResultSet rs = stament.executeQuery(SQL);
             while(rs.next()){
-                lista.add(new Alimento(Integer.parseInt(rs.getString("a.id")),
+                Alimento a = new AlimentoSimple(Integer.parseInt(rs.getString("a.id")),
                                         rs.getString("a.nombre"), 
                                         rs.getString("a.tipo"), 
                                         Integer.parseInt(rs.getString("a.calorias")), 
                                         rs.getString("a.descripcion"),
-                                        rs.getString("a.tipo_comida")));
+                                        rs.getString("a.tipo_comida"));
+                Alimento comp = new AlimentoCompuesto(a, rs.getString("ua.tipo_alimento"));
+                lista.add(comp);
             }
             closeDatabase();
         } catch (SQLException ex) {
