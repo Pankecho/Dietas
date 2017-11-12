@@ -5,6 +5,10 @@
  */
 package Interfaz;
 
+import Patrones.Alimento;
+import Patrones.AlimentoCompuesto;
+import Patrones.Usuario;
+
 /**
  *
  * @author Eduardo
@@ -14,11 +18,21 @@ public class panelAlimento extends javax.swing.JPanel {
     /**
      * Creates new form panelAlimento
      */
+    Usuario u;
+    AlimentoCompuesto a;
     public panelAlimento() {
         initComponents();
         this.setSize(520,440);
     }
-
+    
+    public void setDatos(AlimentoCompuesto a,Usuario u){
+        this.u=u;
+        this.a=a;
+        labelNombre.setText(a.getNombre());
+        labelCalorias.setText(""+a.getCalorias());
+        labelDescripcion.setText(a.getDescripcion());
+ 
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,35 +46,59 @@ public class panelAlimento extends javax.swing.JPanel {
         labelDescripcion = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         labelCalorias = new javax.swing.JLabel();
+        botonAceptar = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(36, 47, 65));
+        setPreferredSize(new java.awt.Dimension(520, 440));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelNombre.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         labelNombre.setForeground(new java.awt.Color(255, 255, 255));
         labelNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNombre.setText("Nombre del Alimento");
-        add(labelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 250, 50));
+        add(labelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 250, 50));
 
         labelDescripcion.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         labelDescripcion.setForeground(new java.awt.Color(255, 255, 255));
         labelDescripcion.setText("Esta es la descripcion del alimento");
-        add(labelDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 270, 80));
+        add(labelDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 270, 80));
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Calorias: ");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, -1, -1));
 
         labelCalorias.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         labelCalorias.setForeground(new java.awt.Color(255, 255, 255));
         labelCalorias.setText("Int con la cantidad de calorias");
-        add(labelCalorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, -1, -1));
+        add(labelCalorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, -1, -1));
+
+        botonAceptar.setBackground(new java.awt.Color(97, 212, 195));
+        botonAceptar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonAceptarMouseClicked(evt);
+            }
+        });
+        botonAceptar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Aceptar");
+        botonAceptar.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, -1));
+
+        add(botonAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 100, 30));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAceptarMouseClicked
+        u.comer(a);
+    }//GEN-LAST:event_botonAceptarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel botonAceptar;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel labelCalorias;
     private javax.swing.JLabel labelDescripcion;
     private javax.swing.JLabel labelNombre;

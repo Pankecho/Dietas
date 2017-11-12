@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Interfaz;
-
+import Patrones.*;
 /**
  *
  * @author Eduardo
@@ -14,6 +14,7 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
+    Facade f;
     Registro r=  new Registro();
     MensajeCerrar mensaje= new MensajeCerrar();
     Menu m= new Menu();
@@ -48,7 +49,7 @@ public class Login extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        jPanel4 = new javax.swing.JPanel();
+        botonAceptar = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jPasswordField2 = new javax.swing.JPasswordField();
         jSeparator4 = new javax.swing.JSeparator();
@@ -158,20 +159,20 @@ public class Login extends javax.swing.JFrame {
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 300, 100, 30));
 
-        jPanel4.setBackground(new java.awt.Color(97, 212, 195));
-        jPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonAceptar.setBackground(new java.awt.Color(97, 212, 195));
+        botonAceptar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel4MouseClicked(evt);
+                botonAceptarMouseClicked(evt);
             }
         });
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        botonAceptar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Aceptar");
-        jPanel4.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, -1));
+        botonAceptar.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, -1));
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 300, 100, 30));
+        jPanel1.add(botonAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 300, 100, 30));
 
         jPasswordField2.setBackground(new java.awt.Color(36, 47, 65));
         jPasswordField2.setForeground(new java.awt.Color(255, 255, 255));
@@ -221,10 +222,18 @@ public class Login extends javax.swing.JFrame {
         campoContraseña.setText("");
     }//GEN-LAST:event_campoContraseñaFocusGained
 
-    private void jPanel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseClicked
-        m.setVisible(true);
-        this.setVisible(false);       
-    }//GEN-LAST:event_jPanel4MouseClicked
+    private void botonAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAceptarMouseClicked
+        f= new Facade(campoTexto.getText(),campoContraseña.getText());
+        Usuario u= f.getUsuario();
+        if (u == null){
+            System.out.println("No existe el usuario");
+        }else{
+            m.setUsuario(f.getUsuario());
+            m.añadirDatos();
+            m.setVisible(true);
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_botonAceptarMouseClicked
 
     private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
         r.setVisible(true);
@@ -278,6 +287,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel botonAceptar;
     private javax.swing.JPasswordField campoContraseña;
     private javax.swing.JTextField campoTexto;
     private javax.swing.JLabel jLabel2;
@@ -290,7 +300,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;

@@ -5,12 +5,14 @@
  */
 package Interfaz;
 
+import Patrones.*;
+
 /**
  *
  * @author Eduardo
  */
 public class Registro extends javax.swing.JFrame {
-
+    Facade f;
     /**
      * Creates new form Registro
      */
@@ -57,7 +59,7 @@ public class Registro extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         campoVida = new javax.swing.JComboBox<>();
         campoSexo = new javax.swing.JComboBox<>();
-        jPanel4 = new javax.swing.JPanel();
+        botonAceptar = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -82,7 +84,7 @@ public class Registro extends javax.swing.JFrame {
         campoNombre.setBackground(new java.awt.Color(36, 47, 65));
         campoNombre.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         campoNombre.setForeground(new java.awt.Color(255, 255, 255));
-        campoNombre.setText("Escribe tu nombre");
+        campoNombre.setText("nombre");
         campoNombre.setBorder(null);
         campoNombre.setDisabledTextColor(new java.awt.Color(204, 204, 204));
         campoNombre.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -108,7 +110,7 @@ public class Registro extends javax.swing.JFrame {
         campoApellido.setBackground(new java.awt.Color(36, 47, 65));
         campoApellido.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         campoApellido.setForeground(new java.awt.Color(255, 255, 255));
-        campoApellido.setText("Apellidos ...");
+        campoApellido.setText("apellido");
         campoApellido.setBorder(null);
         campoApellido.setDisabledTextColor(new java.awt.Color(204, 204, 204));
         campoApellido.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -134,7 +136,7 @@ public class Registro extends javax.swing.JFrame {
         campoUsuario.setBackground(new java.awt.Color(36, 47, 65));
         campoUsuario.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         campoUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        campoUsuario.setText("Escribe tu usuario");
+        campoUsuario.setText("user");
         campoUsuario.setBorder(null);
         campoUsuario.setDisabledTextColor(new java.awt.Color(204, 204, 204));
         campoUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -160,6 +162,7 @@ public class Registro extends javax.swing.JFrame {
         campoContraseña.setBackground(new java.awt.Color(36, 47, 65));
         campoContraseña.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         campoContraseña.setForeground(new java.awt.Color(255, 255, 255));
+        campoContraseña.setText("pass");
         campoContraseña.setBorder(null);
         campoContraseña.setDisabledTextColor(new java.awt.Color(204, 204, 204));
         campoContraseña.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -185,7 +188,7 @@ public class Registro extends javax.swing.JFrame {
         campoEdad.setBackground(new java.awt.Color(36, 47, 65));
         campoEdad.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         campoEdad.setForeground(new java.awt.Color(255, 255, 255));
-        campoEdad.setText("Escribe tu edad");
+        campoEdad.setText("23");
         campoEdad.setBorder(null);
         campoEdad.setDisabledTextColor(new java.awt.Color(204, 204, 204));
         campoEdad.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -211,7 +214,7 @@ public class Registro extends javax.swing.JFrame {
         campoPeso.setBackground(new java.awt.Color(36, 47, 65));
         campoPeso.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         campoPeso.setForeground(new java.awt.Color(255, 255, 255));
-        campoPeso.setText("Escribe tu peso");
+        campoPeso.setText("60");
         campoPeso.setBorder(null);
         campoPeso.setDisabledTextColor(new java.awt.Color(204, 204, 204));
         campoPeso.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -237,7 +240,7 @@ public class Registro extends javax.swing.JFrame {
         campoAltura.setBackground(new java.awt.Color(36, 47, 65));
         campoAltura.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         campoAltura.setForeground(new java.awt.Color(255, 255, 255));
-        campoAltura.setText("Ingresa tu altura");
+        campoAltura.setText("60");
         campoAltura.setBorder(null);
         campoAltura.setDisabledTextColor(new java.awt.Color(204, 204, 204));
         campoAltura.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -268,7 +271,7 @@ public class Registro extends javax.swing.JFrame {
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 310, -1, -1));
 
         campoVida.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        campoVida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Sedentario", "Muy sedentario" }));
+        campoVida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sedentario", "Leve", "Moderada", "Fuerte", "Muy Fuerte" }));
         campoVida.setBorder(null);
         jPanel1.add(campoVida, new org.netbeans.lib.awtextra.AbsoluteConstraints(426, 350, 90, -1));
 
@@ -277,20 +280,20 @@ public class Registro extends javax.swing.JFrame {
         campoSexo.setBorder(null);
         jPanel1.add(campoSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(426, 310, 90, -1));
 
-        jPanel4.setBackground(new java.awt.Color(97, 212, 195));
-        jPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonAceptar.setBackground(new java.awt.Color(97, 212, 195));
+        botonAceptar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel4MouseClicked(evt);
+                botonAceptarMouseClicked(evt);
             }
         });
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        botonAceptar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel16.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Aceptar");
-        jPanel4.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
+        botonAceptar.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 400, 130, 40));
+        jPanel1.add(botonAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 400, 130, 40));
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 204, 204));
@@ -369,10 +372,29 @@ public class Registro extends javax.swing.JFrame {
         campoContraseña.setText("");
     }//GEN-LAST:event_campoContraseñaMouseClicked
 
-    private void jPanel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseClicked
-        m.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_jPanel4MouseClicked
+    private void botonAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAceptarMouseClicked
+        char sexo;
+        if(campoSexo.getSelectedItem().equals("Hombre")){
+            sexo='M';
+        }else{
+            sexo='F';
+        }
+        System.out.println("Vida: "+campoVida.getSelectedItem().toString()+" sexo:"+sexo);
+        f= new Facade((campoNombre.getText()+" "+campoApellido.getText()),Integer.parseInt(campoEdad.getText()),
+                Float.parseFloat(campoPeso.getText()),sexo,Float.parseFloat(campoAltura.getText()),
+                campoVida.getSelectedItem().toString(),
+                campoContraseña.getText(),campoUsuario.getText());
+        if (f.getUsuario() == null){
+            System.out.println("No se creo");
+        }else{
+            System.out.println("Se creo el usuario");
+            m.setUsuario(f.getUsuario());
+            m.añadirDatos();
+            m.setVisible(true);
+            this.setVisible(false);
+        }
+
+    }//GEN-LAST:event_botonAceptarMouseClicked
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
 
@@ -420,6 +442,7 @@ public class Registro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel botonAceptar;
     private javax.swing.JTextField campoAltura;
     private javax.swing.JTextField campoApellido;
     private javax.swing.JTextField campoContraseña;
@@ -441,7 +464,6 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator11;
     private javax.swing.JSeparator jSeparator5;

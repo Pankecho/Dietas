@@ -7,6 +7,8 @@ package Interfaz;
 
 import java.awt.Color;
 import javax.swing.JPanel;
+import Patrones.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,16 +19,44 @@ public class Menu extends javax.swing.JFrame {
     /**
      * Creates new form Menu
      */
+    Usuario u;
     CambiaPanel cambiaPanel;
     MensajeCerrar mensaje= new MensajeCerrar();
     panelAlimento panelAlimento= new panelAlimento();
     panelRegistro panelRegistro= new panelRegistro();
     panelEjercicio panelEjercicio= new panelEjercicio();
+    ArrayList <Component> com;
+    ArrayList <AlimentoCompuesto> ali=new ArrayList<AlimentoCompuesto>();;
+    ArrayList <Ejercicio> ejer=new ArrayList<Ejercicio>();
     public Menu() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-
+    
+    public void setUsuario(Usuario u){
+        this.u=u;
+    }
+    
+    public void añadirDatos(){
+        labelUsuario.setText(u.getNombre());
+        com=u.getDieta().getComponentes();
+        for(int i = 0; i < com.size(); i++){
+            System.out.println(com.get(i).getClass());
+            switch(com.get(i).getClass().getName()){
+                case "Patrones.Ejercicio":
+                    ejer.add((Ejercicio)com.get(i));
+                    break;
+                case "Patrones.AlimentoCompuesto":
+                    ali.add((AlimentoCompuesto)com.get(i));
+                    break;
+                default:
+                   
+                    break;
+            }
+        }
+        System.out.println("Tamaño de Alimentos"+ali.size());
+        System.out.println("Tamaño de Ejercicios"+ejer.size());
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -64,7 +94,7 @@ public class Menu extends javax.swing.JFrame {
         botonEjercicio3 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
+        labelUsuario = new javax.swing.JLabel();
         botonCena = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
@@ -253,11 +283,11 @@ public class Menu extends javax.swing.JFrame {
 
         panelMenu.add(botonEjercicio3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 230, 30));
 
-        jLabel21.setBackground(new java.awt.Color(153, 153, 153));
-        jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel21.setText("Nombre del usuario");
-        panelMenu.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 190, 30));
+        labelUsuario.setBackground(new java.awt.Color(153, 153, 153));
+        labelUsuario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelUsuario.setForeground(new java.awt.Color(51, 51, 51));
+        labelUsuario.setText("Nombre del usuario");
+        panelMenu.add(labelUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 190, 30));
 
         botonCena.setBackground(new java.awt.Color(97, 212, 195));
         botonCena.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -349,6 +379,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_botonRegistroMousePressed
 
     private void botonEntremesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEntremesMousePressed
+        panelAlimento.setDatos(ali.get(3),u);
         new CambiaPanel(panelPrincipal,panelAlimento);
         setColor(botonEntremes);
         resetColor(botonDesayuno);
@@ -362,6 +393,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_botonEntremesMousePressed
 
     private void botonComidaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonComidaMousePressed
+        panelAlimento.setDatos(ali.get(1),u);
         new CambiaPanel(panelPrincipal,panelAlimento);
         setColor(botonComida);
         resetColor(botonDesayuno);
@@ -375,6 +407,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_botonComidaMousePressed
 
     private void botonDesayunoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonDesayunoMousePressed
+        panelAlimento.setDatos(ali.get(0),u);
         new CambiaPanel(panelPrincipal,panelAlimento);
         setColor(botonDesayuno);
         resetColor(botonEntremes);
@@ -388,6 +421,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_botonDesayunoMousePressed
 
     private void botonEntremes2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEntremes2MousePressed
+        panelAlimento.setDatos(ali.get(4),u);
         new CambiaPanel(panelPrincipal,panelAlimento);
         setColor(botonEntremes2);
         resetColor(botonDesayuno);
@@ -401,6 +435,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_botonEntremes2MousePressed
 
     private void botonEjercicio1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEjercicio1MousePressed
+        panelEjercicio.setDatos(ejer.get(0),u);
         new CambiaPanel(panelPrincipal,panelEjercicio);
         setColor(botonEjercicio1);
         resetColor(botonDesayuno);
@@ -414,6 +449,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_botonEjercicio1MousePressed
 
     private void botonEjercicio2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEjercicio2MousePressed
+        panelEjercicio.setDatos(ejer.get(1),u);
         new CambiaPanel(panelPrincipal,panelEjercicio);
         setColor(botonEjercicio2);
         resetColor(botonDesayuno);
@@ -427,7 +463,8 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_botonEjercicio2MousePressed
 
     private void botonEjercicio3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEjercicio3MousePressed
-        new CambiaPanel(panelPrincipal,panelAlimento);
+        panelEjercicio.setDatos(ejer.get(2),u);
+        new CambiaPanel(panelPrincipal,panelEjercicio);
         setColor(botonEjercicio3);
         resetColor(botonDesayuno);
         resetColor(botonRegistro);
@@ -440,6 +477,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_botonEjercicio3MousePressed
 
     private void botonCenaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCenaMousePressed
+        panelAlimento.setDatos(ali.get(2),u);
         new CambiaPanel(panelPrincipal,panelAlimento);
         setColor(botonCena);
         resetColor(botonDesayuno);
@@ -522,7 +560,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
@@ -535,6 +572,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JLabel labelUsuario;
     private javax.swing.JPanel panelMenu;
     private javax.swing.JPanel panelPrincipal;
     // End of variables declaration//GEN-END:variables
