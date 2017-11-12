@@ -8,27 +8,9 @@
  *
  * @author pankecho
  */
-public class Alimento implements Component{
-    private String nombre, tipoAlimento, descripcion,tipoComida;
-    private int calorias, id;
-    
-    public Alimento(){
-        this.nombre = "";
-        this.tipoAlimento = "";
-        this.descripcion = "";
-        this.calorias = 0;
-        this.id = 0;
-        this.tipoComida = "";
-    }
-    
-    public Alimento(int id, String n, String tA, int c, String d,String tc){
-        this.id = id;
-        this.nombre = n;
-        this.tipoAlimento = tA;
-        this.descripcion = d;
-        this.calorias = c;
-        this.tipoComida = tc;
-    }
+public abstract class Alimento implements Component{
+    protected String nombre, tipoAlimento, descripcion,tipoComida;
+    protected int calorias, id;
 
     public String getDescripcion() {
         return descripcion;

@@ -44,6 +44,7 @@ create table dieta(
 create table dieta_alimento(
     id_dieta INTEGER not null,
     id_alimento INTEGER not null,
+    tipo_alimento varchar not null,
     FOREIGN key (id_dieta) REFERENCES dieta(id) MATCH full on UPDATE CASCADE on DELETE RESTRICT,
     FOREIGN key (id_alimento) REFERENCES alimento(id) MATCH full on UPDATE CASCADE on DELETE RESTRICT
 );
