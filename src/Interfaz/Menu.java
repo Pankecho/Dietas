@@ -24,6 +24,7 @@ public class Menu extends javax.swing.JFrame {
     panelEjercicio panelEjercicio= new panelEjercicio();
     public Menu() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
