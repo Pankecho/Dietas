@@ -204,12 +204,12 @@ public class Database {
         return index;
     }
     
-    public void guardarAlimento(int id, ArrayList<Alimento> a){
-        String SQL = "INSERT INTO dieta_alimento VALUES ";
+    public void guardarAlimento(int id, ArrayList<AlimentoCompuesto> a){
+        String SQL = "INSERT INTO dieta_alimento (id_dieta,id_alimento,tipo_alimento) VALUES ";
         String values = "";
-        for(int i = 0; i < a.size(); i++){
-            values += "(" + id + "," + a.get(i).getId() + "),";
-        }
+        for(int i = 0; i < a.size(); i++){  
+            values += "(" + id + "," + a.get(i).getId() + ",'"+a.get(i).getTipoComidaAlimento()+"'),";
+        }        
         values = values.substring(0,values.length()-1);
         SQL+=values;
         if(this.conexion == null){
@@ -218,7 +218,6 @@ public class Database {
         try {
             PreparedStatement stmnt = this.conexion.prepareStatement(SQL);
             stmnt.executeUpdate();
-            System.out.println("Insertados");
             closeDatabase();
         } catch (SQLException ex) {
             System.out.println("Error al insertar datos en Alimento : " + ex.getMessage());
@@ -226,7 +225,7 @@ public class Database {
     }
     
     public void guardarEjercicio(int id, ArrayList<Ejercicio> a){
-        String SQL = "INSERT INTO usuario_ejercicio VALUES ";
+        String SQL = "INSERT INTO dieta_ejercicio VALUES ";
         String values = "";
         for(int i = 0; i < a.size(); i++){
             values += "(" + id + "," + a.get(i).getId() + "),";
@@ -247,7 +246,7 @@ public class Database {
     
     public Usuario autenticar(String user, String pass){
         Usuario u = null;
-        String SQL = "SELECT * FROM usuario AS u WHERE u.username = " + user + " and u.password = " + pass;
+        String SQL = "SELECT * FROM usuario AS u WHERE u.username = '" + user + "' and u.password = '" + pass + "'";
         if(this.conexion == null){
             this.conexion = getConnection();
         }
@@ -255,26 +254,29 @@ public class Database {
             Statement stament = this.conexion.createStatement();
             ResultSet rs = stament.executeQuery(SQL);
             while(rs.next()){
-                u = new Usuario(rs.getString("nombre") + rs.getString("ap_paterno"),
+                if(rs.getInt(1) >= 1){
+                    u = new Usuario(rs.getString("nombre") + rs.getString("ap_paterno"),
                                 Integer.parseInt(rs.getString("edad")), 
                                 Float.parseFloat(rs.getString("peso")),
                                 rs.getString("sexo").charAt(0), 
                                 Float.parseFloat(rs.getString("altura")), 
-                                rs.getString("tipo"), 
-                                rs.getString("user"),
+                                rs.getString("estilo_vida"), 
+                                rs.getString("username"),
                                 rs.getString("password"));
-                u.setId(Integer.parseInt(rs.getString("id")));
+                    u.setId(Integer.parseInt(rs.getString("id")));
+                    Dieta d = getDietaPorUsuario(u.getId());
+                    System.out.println(d);
+                    List<Alimento> alimentos = getAlimentosPorDieta(d.getId());
+                    List<Ejercicio> ejercicio = getEjerciciosPorDieta(d.getId());
+                    for(int i = 0; i < alimentos.size(); i++){
+                        d.agregarComponente(alimentos.get(i));
+                    }
+                    for(int i = 0; i < ejercicio.size(); i++){
+                        d.agregarComponente(ejercicio.get(i));
+                    }
+                    u.setDieta(d);
+                }
             }
-            Dieta d = getDietaPorUsuario(u.getId());
-            List<Alimento> alimentos = getAlimentosPorDieta(d.getId());
-            List<Ejercicio> ejercicio = getEjerciciosPorDieta(d.getId());
-            for(int i = 0; i < alimentos.size(); i++){
-                d.agregarComponente(alimentos.get(i));
-            }
-            for(int i = 0; i < ejercicio.size(); i++){
-                d.agregarComponente(ejercicio.get(i));
-            }
-            u.setDieta(d);
             closeDatabase();
         } catch (SQLException ex) {
             System.out.println("Error al tratar de obtener usuario : " + ex.getMessage());
@@ -284,7 +286,8 @@ public class Database {
     
     public Dieta getDietaPorUsuario(int id){
         Dieta d = null;
-        String SQL = "SELECT * FROM dieta as d WHERE id_usuario = " + id;
+        String SQL = "SELECT * FROM dieta as d WHERE d.id_usuario = " + id;
+        System.out.println(SQL);
         if(this.conexion == null){
             this.conexion = getConnection();
         }

@@ -74,7 +74,7 @@ public class CreadorDieta {
             if(index < max){
                 if(contains(e.get(i).getTipoAlimento(), tipo)){
                     if(e.get(i).getCalorias() <= c){
-                        array.add(e.get(i));
+                        array.add(new AlimentoCompuesto(e.get(i),tipo));
                         e.remove(i);
                         index++;
                     }

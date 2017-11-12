@@ -1,4 +1,4 @@
-create schema dieta AUTHORIZATION postgres;
+﻿create schema dieta AUTHORIZATION postgres;
 set search_path to dieta;
 
 create table alimento(
@@ -23,7 +23,7 @@ CREATE TABLE usuario(
     id SERIAL PRIMARY KEY not null,
     nombre VARCHAR(50) not null,
     ap_paterno VARCHAR(50) not null,
-    username VARCHAR(50) not null,
+    username VARCHAR(50) unique not null,
     password VARCHAR(50) not null,
     edad INTEGER not null,
     sexo VARCHAR(1) not null,
@@ -64,5 +64,5 @@ create table log_bd(
     FOREIGN key (id_usuario) REFERENCES usuario(id) MATCH full on UPDATE CASCADE on DELETE RESTRICT
 );
 
-copy alimento from '/home/fredy/Documentos/ITO/alimentos.csv' with delimiter '|';
-copy ejercicio from '/home/fredy/Documentos/ITO/ejercicios.csv' with delimiter '|';
+copy alimento from '/Users/pankecho/Documents/Java/Dietas/DB/alimentos.csv' with delimiter '|';
+copy ejercicio from '/Users/pankecho/Documents/Java/Dietas/DB/ejercicios.csv' with delimiter '|';
