@@ -5,6 +5,8 @@
  */
 package Interfaz;
 import Patrones.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Eduardo
@@ -18,6 +20,7 @@ public class Login extends javax.swing.JFrame {
     Registro r=  new Registro();
     MensajeCerrar mensaje= new MensajeCerrar();
     Menu m= new Menu();
+    MensajeUsuario mensajito=new MensajeUsuario();;
     public Login() {
         initComponents();
         this.setSize(650, 432);
@@ -226,7 +229,9 @@ public class Login extends javax.swing.JFrame {
         f.login(campoTexto.getText(),campoContraseña.getText());
         Usuario u= f.getUsuario();
         if (u == null){
-            System.out.println("No existe el usuario");
+            //System.out.println("No existe el usuario");
+            mensajito.setVentana(this);
+            mensajito.setVisible(true);
         }else{
             m.setUsuario(f.getUsuario());
             m.añadirDatos();

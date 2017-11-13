@@ -71,8 +71,8 @@ public class Menu extends javax.swing.JFrame {
         if(ali.size()==4){
             botonEntremes2.setVisible(false);
         }       
-        System.out.println("Tamaño de Alimentos"+ali.size());
-        System.out.println("Tamaño de Ejercicios"+ejer.size());
+        //System.out.println("Tamaño de Alimentos"+ali.size());
+        //System.out.println("Tamaño de Ejercicios"+ejer.size());
     }
     /**
      * This method is called from within the constructor to initialize the form.

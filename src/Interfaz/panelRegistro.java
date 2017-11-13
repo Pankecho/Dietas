@@ -34,44 +34,18 @@ public class panelRegistro extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        labelNombre = new javax.swing.JLabel();
         labelNombre1 = new javax.swing.JLabel();
-        campoAlimento = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(36, 47, 65));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labelNombre.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        labelNombre.setForeground(new java.awt.Color(255, 255, 255));
-        labelNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelNombre.setText("Alimento:");
-        add(labelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 90, 20));
-
         labelNombre1.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         labelNombre1.setForeground(new java.awt.Color(255, 255, 255));
         labelNombre1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelNombre1.setText("Registra tu Dieta");
-        add(labelNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 250, 50));
-
-        campoAlimento.setBackground(new java.awt.Color(36, 47, 65));
-        campoAlimento.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        campoAlimento.setForeground(new java.awt.Color(255, 255, 255));
-        campoAlimento.setText("Registra tu alimentacion");
-        campoAlimento.setBorder(null);
-        campoAlimento.setDisabledTextColor(new java.awt.Color(204, 204, 204));
-        campoAlimento.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                campoAlimentoMouseClicked(evt);
-            }
-        });
-        campoAlimento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoAlimentoActionPerformed(evt);
-            }
-        });
-        add(campoAlimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 240, 20));
+        labelNombre1.setText("Registro de Actividad");
+        add(labelNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 250, 50));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -86,23 +60,13 @@ public class panelRegistro extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 370, 220));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 350, 270));
     }// </editor-fold>//GEN-END:initComponents
-
-    private void campoAlimentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoAlimentoMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoAlimentoMouseClicked
-
-    private void campoAlimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoAlimentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoAlimentoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField campoAlimento;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JLabel labelNombre;
     private javax.swing.JLabel labelNombre1;
     // End of variables declaration//GEN-END:variables
 }
