@@ -18,15 +18,19 @@ public class Facade {
     private Usuario usuario;
     private Database instancia;
     private CreadorDieta cd;
-
-    public Facade(String user, String pass) {
+    
+    public Facade(){
+        
+    }
+    
+    public void login(String user, String pass) {
         this.instancia = Database.getInstance();
         this.usuario = this.instancia.autenticar(user, pass);
         this.cd = new CreadorDieta((ArrayList<Alimento>)this.instancia.getAlimentos(), (ArrayList<Ejercicio>)this.instancia.getEjercicios());
         System.out.println("Accedio");
     }
     
-    public Facade(String nombre, int edad, float peso, char sexo, float altura, String tipo_vida,String password, String usua){
+    public void registro(String nombre, int edad, float peso, char sexo, float altura, String tipo_vida,String password, String usua){
         System.out.println(nombre+edad+peso+sexo+altura+tipo_vida+password+usua);
         this.instancia = Database.getInstance();
         ArrayList<Alimento> aaa = (ArrayList<Alimento>)this.instancia.getAlimentos();
