@@ -27,11 +27,10 @@ public class Facade {
         this.instancia = Database.getInstance();
         this.usuario = this.instancia.autenticar(user, pass);
         this.cd = new CreadorDieta((ArrayList<Alimento>)this.instancia.getAlimentos(), (ArrayList<Ejercicio>)this.instancia.getEjercicios());
-        System.out.println("Accedio");
+        Log l = new Log(this.usuario);
     }
     
     public void registro(String nombre, int edad, float peso, char sexo, float altura, String tipo_vida,String password, String usua){
-        System.out.println(nombre+edad+peso+sexo+altura+tipo_vida+password+usua);
         this.instancia = Database.getInstance();
         ArrayList<Alimento> aaa = (ArrayList<Alimento>)this.instancia.getAlimentos();
         ArrayList<Ejercicio> eee = (ArrayList<Ejercicio>)this.instancia.getEjercicios();
@@ -49,7 +48,6 @@ public class Facade {
         ArrayList<Ejercicio> ej = new ArrayList<Ejercicio>();
         
         for(int i = 0; i < aa.size(); i++){
-            System.out.println(aa.get(i).getClass());
             switch(aa.get(i).getClass().getName()){
                 case "Patrones.Ejercicio":
                     ej.add((Ejercicio)aa.get(i));

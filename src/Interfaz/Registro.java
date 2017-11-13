@@ -18,6 +18,7 @@ public class Registro extends javax.swing.JFrame {
      */
     Menu m= new Menu();
     MensajeCerrar mensaje= new MensajeCerrar();
+    MensajeUsuario mu = new MensajeUsuario();
     public Registro() {
         initComponents();
         this.setSize(587, 505);
@@ -64,7 +65,6 @@ public class Registro extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(587, 475));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -231,8 +231,8 @@ public class Registro extends javax.swing.JFrame {
 
         jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel12.setText("PESO");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 250, -1, -1));
+        jLabel12.setText("PESO (Kg)");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 250, 100, -1));
 
         jSeparator11.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, 200, 10));
@@ -262,7 +262,7 @@ public class Registro extends javax.swing.JFrame {
 
         jLabel14.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel14.setText("ALTURA");
+        jLabel14.setText("ALTURA (cm)");
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
@@ -272,13 +272,11 @@ public class Registro extends javax.swing.JFrame {
 
         campoVida.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         campoVida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sedentario", "Leve", "Moderada", "Fuerte", "Muy Fuerte" }));
-        campoVida.setBorder(null);
-        jPanel1.add(campoVida, new org.netbeans.lib.awtextra.AbsoluteConstraints(426, 350, 90, -1));
+        jPanel1.add(campoVida, new org.netbeans.lib.awtextra.AbsoluteConstraints(426, 350, 120, -1));
 
         campoSexo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         campoSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hombre", "Mujer" }));
-        campoSexo.setBorder(null);
-        jPanel1.add(campoSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(426, 310, 90, -1));
+        jPanel1.add(campoSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(426, 310, -1, -1));
 
         botonAceptar.setBackground(new java.awt.Color(97, 212, 195));
         botonAceptar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -374,24 +372,38 @@ public class Registro extends javax.swing.JFrame {
 
     private void botonAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAceptarMouseClicked
         char sexo;
-        if(campoSexo.getSelectedItem().equals("Hombre")){
-            sexo='M';
+        if(campoNombre.getText().isEmpty() || 
+                campoApellido.getText().isEmpty() || 
+                campoAltura.getText().isEmpty() || 
+                campoEdad.getText().isEmpty() || 
+                campoContraseña.getText().isEmpty() ||
+                campoPeso.getText().isEmpty() ||
+                campoUsuario.getText().isEmpty()){
+            mu.setLabel("Verifique los campos");
+            this.setEnabled(false);
+            mu.setVentana(this);
+            mu.setVisible(true);
+            mu.setLabel("Usuario o contraseña incorrectos");
         }else{
-            sexo='F';
-        }
-        System.out.println("Vida: "+campoVida.getSelectedItem().toString()+" sexo:"+sexo);
-        f.registro((campoNombre.getText()+" "+campoApellido.getText()),Integer.parseInt(campoEdad.getText()),
-                Float.parseFloat(campoPeso.getText()),sexo,Float.parseFloat(campoAltura.getText()),
-                campoVida.getSelectedItem().toString(),
-                campoContraseña.getText(),campoUsuario.getText());
-        if (f.getUsuario() == null){
-            System.out.println("No se creo");
-        }else{
-            System.out.println("Se creo el usuario");
-            m.setUsuario(f.getUsuario());
-            m.añadirDatos();
-            m.setVisible(true);
-            this.setVisible(false);
+            if(campoSexo.getSelectedItem().equals("Hombre")){
+                sexo='M';
+            }else{
+                sexo='F';
+            }
+            System.out.println("Vida: "+campoVida.getSelectedItem().toString()+" sexo:"+sexo);
+            f.registro((campoNombre.getText()+" "+campoApellido.getText()),Integer.parseInt(campoEdad.getText()),
+                    Float.parseFloat(campoPeso.getText()),sexo,Float.parseFloat(campoAltura.getText()),
+                    campoVida.getSelectedItem().toString(),
+                    campoContraseña.getText(),campoUsuario.getText());
+            if (f.getUsuario() == null){
+                System.out.println("No se creo");
+            }else{
+                System.out.println("Se creo el usuario");
+                m.setUsuario(f.getUsuario());
+                m.añadirDatos();
+                m.setVisible(true);
+                this.setVisible(false);
+            }
         }
 
     }//GEN-LAST:event_botonAceptarMouseClicked

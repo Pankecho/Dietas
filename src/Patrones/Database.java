@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -22,9 +23,9 @@ import java.util.List;
  */
 public class Database {
     
-    private final String database = "Dieta";
+    private final String database = "Patrones";
     private final String usuario = "postgres";
-    private final String password = "kiraaeedu";
+    private final String password = "Jpmr01495";
     private final String schema = "dieta";
     
     private volatile static Database instance = new Database();
@@ -38,7 +39,7 @@ public class Database {
     private Connection getConnection(){
         Connection conn = null;
         try {
-            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5433/" + this.database + "?currentSchema="+this.schema, this.usuario, this.password);
+            conn = DriverManager.getConnection("jdbc:postgresql://localhost/" + this.database + "?currentSchema="+this.schema, this.usuario, this.password);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -338,9 +339,33 @@ public class Database {
         return index;
     }
     
+    public DefaultTableModel getLogPorUser(int id){
+        DefaultTableModel dtm = new DefaultTableModel();
+        String SQL = "SELECT * FROM log_bd WHERE id_usuario = " + id;
+        if(this.conexion == null){
+            this.conexion = getConnection();
+        }
+        try {
+            Statement stament = this.conexion.createStatement();
+            ResultSet rs = stament.executeQuery(SQL);
+            dtm.addColumn("Fecha y hora");
+            dtm.addColumn("Acción");
+            while(rs.next()){
+                Object[] fila = new Object[2];
+                fila[0] = rs.getObject("fecha");
+                fila[1] = rs.getObject("accion");
+                dtm.addRow(fila);
+            }
+            closeDatabase();
+        } catch (SQLException ex) {
+            System.out.println("Error al regresar datos de la tabla Log : " + ex.getMessage());
+        }
+        return dtm;
+    }
+    
     public void closeDatabase(){
         try {
-                this.conexion.close();
+            this.conexion.close();
         } catch (SQLException ex) {
             System.out.println("Error al regresar datos de la tabla Ejercicio : " + ex.getMessage());
         }

@@ -5,6 +5,8 @@
  */
 package Interfaz;
 
+import javax.swing.JLabel;
+
 /**
  *
  * @author Eduardo
@@ -25,6 +27,10 @@ public class MensajeUsuario extends javax.swing.JFrame {
     public void setVentana(javax.swing.JFrame frame){
         this.ventana=frame;
         
+    }
+    
+    public void setLabel(String t){
+        this.jLabel2.setText(t);
     }
     /**
      * This method is called from within the constructor to initialize the form.

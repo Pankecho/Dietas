@@ -392,7 +392,8 @@ public class Menu extends javax.swing.JFrame {
         resetColor(botonEjercicio1);
         resetColor(botonEjercicio2);
         resetColor(botonEjercicio3);
-        
+        panelRegistro.setUser(u);
+        panelRegistro.setData();
     }//GEN-LAST:event_botonRegistroMousePressed
 
     private void botonEntremesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEntremesMousePressed

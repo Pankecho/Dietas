@@ -35,11 +35,11 @@ public class Log implements Observer{
     }
     
     public void registrarEjercicio(Component c, String a){
-        this.database.registrarLog(((Usuario)usuario).getId(),a + " " + ((Ejercicio)c).getDescripcion());
+        this.database.registrarLog(((Usuario)usuario).getId(),"Usuario : " + ((Usuario)usuario).getNombre() + " - " + a + " " + ((Ejercicio)c).getNombre());
     }
     
     public void registrarAlimento(Component c, String a){
-        this.database.registrarLog(((Usuario)usuario).getId(),a + " " + ((AlimentoCompuesto)c).getDescripcion());
+        this.database.registrarLog(((Usuario)usuario).getId(),"Usuario : " + ((Usuario)usuario).getNombre() + " - " + a + " " + ((AlimentoCompuesto)c).getNombre());
     }
     
 } 

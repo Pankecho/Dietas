@@ -84,7 +84,7 @@ public class panelAlimento extends javax.swing.JPanel {
 
         jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Aceptar");
+        jLabel8.setText("Registrar");
         botonAceptar.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, -1));
 
         add(botonAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 100, 30));

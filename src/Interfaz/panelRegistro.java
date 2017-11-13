@@ -5,6 +5,8 @@
  */
 package Interfaz;
 
+import Patrones.Database;
+import Patrones.Usuario;
 import javax.swing.JScrollPane;
 
 /**
@@ -16,6 +18,7 @@ public class panelRegistro extends javax.swing.JPanel {
     /**
      * Creates new form panelRegistro
      */
+    Usuario u;
     public panelRegistro() {
         initComponents();
         this.setSize(520,440);
@@ -23,6 +26,14 @@ public class panelRegistro extends javax.swing.JPanel {
         //JScrollPane pane =  new JScrollPane(areaAlimento,JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         //areaAlimento.setEnabled(true);
         //areaAlimento.setEditable(true);
+    }
+    
+    public void setUser(Usuario u){
+        this.u = u;
+    }
+    
+    public void setData(){
+        this.jTable1.setModel(Database.getInstance().getLogPorUser(u.getId()));
     }
 
     /**
@@ -60,7 +71,7 @@ public class panelRegistro extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 350, 270));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 400, 270));
     }// </editor-fold>//GEN-END:initComponents
 
 
