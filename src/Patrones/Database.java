@@ -23,9 +23,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Database {
     
-    private final String database = "Patrones";
+    private final String database = "dietas";
     private final String usuario = "postgres";
-    private final String password = "Jpmr01495";
+    private final String password = "Frodo7751@";
     private final String schema = "dieta";
     
     private volatile static Database instance = new Database();

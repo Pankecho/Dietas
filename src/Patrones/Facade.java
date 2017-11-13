@@ -25,9 +25,13 @@ public class Facade {
     
     public void login(String user, String pass) {
         this.instancia = Database.getInstance();
-        this.usuario = this.instancia.autenticar(user, pass);
+        this.usuario = this.instancia.autenticar(user, pass);        
         this.cd = new CreadorDieta((ArrayList<Alimento>)this.instancia.getAlimentos(), (ArrayList<Ejercicio>)this.instancia.getEjercicios());
-        Log l = new Log(this.usuario);
+        try {
+            Log l = new Log(this.usuario);
+        }
+        catch(Exception e){    
+        }
     }
     
     public void registro(String nombre, int edad, float peso, char sexo, float altura, String tipo_vida,String password, String usua){
