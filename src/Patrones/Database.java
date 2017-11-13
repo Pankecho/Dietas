@@ -22,9 +22,9 @@ import java.util.List;
  */
 public class Database {
     
-    private final String database = "Patrones";
+    private final String database = "Dieta";
     private final String usuario = "postgres";
-    private final String password = "Jpmr01495";
+    private final String password = "kiraaeedu";
     private final String schema = "dieta";
     
     private volatile static Database instance = new Database();
@@ -38,7 +38,7 @@ public class Database {
     private Connection getConnection(){
         Connection conn = null;
         try {
-            conn = DriverManager.getConnection("jdbc:postgresql://localhost/" + this.database + "?currentSchema="+this.schema, this.usuario, this.password);
+            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5433/" + this.database + "?currentSchema="+this.schema, this.usuario, this.password);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

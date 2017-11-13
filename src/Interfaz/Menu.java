@@ -54,6 +54,23 @@ public class Menu extends javax.swing.JFrame {
                     break;
             }
         }
+         switch(ejer.size()){
+            case 0:
+                textoEjercicio.setVisible(false);
+                botonEjercicio1.setVisible(false);
+                botonEjercicio2.setVisible(false);
+                botonEjercicio3.setVisible(false);
+            break;
+            case 1:
+                botonEjercicio2.setVisible(false);
+                botonEjercicio3.setVisible(false);
+            break;
+            case 2:
+                botonEjercicio3.setVisible(false);
+        }
+        if(ali.size()==4){
+            botonEntremes2.setVisible(false);
+        }       
         System.out.println("Tamaño de Alimentos"+ali.size());
         System.out.println("Tamaño de Ejercicios"+ejer.size());
     }
@@ -98,7 +115,7 @@ public class Menu extends javax.swing.JFrame {
         botonCena = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        jPanel12 = new javax.swing.JPanel();
+        textoEjercicio = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
         panelPrincipal = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -308,15 +325,15 @@ public class Menu extends javax.swing.JFrame {
 
         panelMenu.add(botonCena, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 230, 30));
 
-        jPanel12.setBackground(new java.awt.Color(97, 212, 195));
-        jPanel12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        textoEjercicio.setBackground(new java.awt.Color(97, 212, 195));
+        textoEjercicio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(255, 255, 255));
         jLabel24.setText("EJERCICIOS");
-        jPanel12.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 10, 120, -1));
+        textoEjercicio.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 10, 120, -1));
 
-        panelMenu.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 230, 30));
+        panelMenu.add(textoEjercicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 230, 30));
 
         bg.add(panelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 440));
 
@@ -570,10 +587,10 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JLabel labelUsuario;
     private javax.swing.JPanel panelMenu;
     private javax.swing.JPanel panelPrincipal;
+    private javax.swing.JPanel textoEjercicio;
     // End of variables declaration//GEN-END:variables
 }

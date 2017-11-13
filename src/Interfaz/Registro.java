@@ -12,7 +12,7 @@ import Patrones.*;
  * @author Eduardo
  */
 public class Registro extends javax.swing.JFrame {
-    Facade f;
+    Facade f=new Facade();
     /**
      * Creates new form Registro
      */
@@ -380,7 +380,7 @@ public class Registro extends javax.swing.JFrame {
             sexo='F';
         }
         System.out.println("Vida: "+campoVida.getSelectedItem().toString()+" sexo:"+sexo);
-        f= new Facade((campoNombre.getText()+" "+campoApellido.getText()),Integer.parseInt(campoEdad.getText()),
+        f.registro((campoNombre.getText()+" "+campoApellido.getText()),Integer.parseInt(campoEdad.getText()),
                 Float.parseFloat(campoPeso.getText()),sexo,Float.parseFloat(campoAltura.getText()),
                 campoVida.getSelectedItem().toString(),
                 campoContraseña.getText(),campoUsuario.getText());

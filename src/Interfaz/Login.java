@@ -14,7 +14,7 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
-    Facade f;
+    Facade f=new Facade();
     Registro r=  new Registro();
     MensajeCerrar mensaje= new MensajeCerrar();
     Menu m= new Menu();
@@ -223,7 +223,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_campoContraseñaFocusGained
 
     private void botonAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAceptarMouseClicked
-        f= new Facade(campoTexto.getText(),campoContraseña.getText());
+        f.login(campoTexto.getText(),campoContraseña.getText());
         Usuario u= f.getUsuario();
         if (u == null){
             System.out.println("No existe el usuario");
