@@ -22,9 +22,9 @@ import java.util.List;
  */
 public class Database {
     
-    private final String database = "Dieta";
+    private final String database = "Patrones";
     private final String usuario = "postgres";
-    private final String password = "kiraaeedu";
+    private final String password = "Jpmr01495";
     private final String schema = "dieta";
     
     private volatile static Database instance = new Database();
@@ -38,7 +38,7 @@ public class Database {
     private Connection getConnection(){
         Connection conn = null;
         try {
-            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5433/" + this.database + "?currentSchema="+this.schema, this.usuario, this.password);
+            conn = DriverManager.getConnection("jdbc:postgresql://localhost/" + this.database + "?currentSchema="+this.schema, this.usuario, this.password);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -229,20 +229,22 @@ public class Database {
     public void guardarEjercicio(int id, ArrayList<Ejercicio> a){
         String SQL = "INSERT INTO dieta_ejercicio VALUES ";
         String values = "";
-        for(int i = 0; i < a.size(); i++){
-            values += "(" + id + "," + a.get(i).getId() + "),";
-        }
-        values = values.substring(0,values.length()-1);
-        SQL+=values;
-        if(this.conexion == null){
-            this.conexion = getConnection();
-        }
-        try {
-            PreparedStatement stmnt = this.conexion.prepareStatement(SQL);
-            stmnt.executeUpdate();
-            closeDatabase();
-        } catch (SQLException ex) {
-            System.out.println("Error al insertar datos de la tabla Ejercicio : " + ex.getMessage());
+        if(!a.isEmpty()){
+            for(int i = 0; i < a.size(); i++){
+                values += "(" + id + "," + a.get(i).getId() + "),";
+            }
+            values = values.substring(0,values.length()-1);
+            SQL+=values;
+            if(this.conexion == null){
+                this.conexion = getConnection();
+            }
+            try {
+                PreparedStatement stmnt = this.conexion.prepareStatement(SQL);
+                stmnt.executeUpdate();
+                closeDatabase();
+            } catch (SQLException ex) {
+                System.out.println("Error al insertar datos de la tabla Ejercicio : " + ex.getMessage());
+            }
         }
     }
     
